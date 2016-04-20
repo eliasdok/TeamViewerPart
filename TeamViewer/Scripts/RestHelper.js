@@ -1,4 +1,14 @@
-﻿Dragon = (function () {
+﻿// Initiate Promise library
+
+var Promise = require("bluebird");
+// Configure
+Promise.config({
+    longStackTraces: true,
+    warnings: true
+})
+
+
+Dragon = (function () {
 
 
     // Cache Object Variable with Key
