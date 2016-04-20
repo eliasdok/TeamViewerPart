@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ClientWebPart Name="TeamViewerAppPart" Title="Team Viewer" Description="Dragon Team Viewer" DefaultWidth="300" DefaultHeight="600">
+
+    <!-- Content element identifies the location of the page that will render inside the client web part
+         Properties are referenced on the query string using the pattern _propertyName_
+         Example: Src="~appWebUrl/Pages/ClientWebPart1.aspx?Property1=_property1_" -->
+    <Content Type="html" Src="~appWebUrl/Pages/TeamViewerAppPart.aspx?{StandardTokens}&amp;Department=_Department_" />
+
+    <!-- Define properties in the Properties element.
+         Remember to put Property Name on the Src attribute of the Content element above. -->
+    <Properties>
+      <Property Name="Department" Type="string" RequiresDesignerPermission="true" DefaultValue="Customer Services" WebBrowsable="true" WebDisplayName="Department" WebDescription="The Department to filter users by" WebCategory="DragonPart Properties" />
+    </Properties>
+
+  </ClientWebPart>
+</Elements>

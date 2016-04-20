@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="73e3026a-4fe7-489d-9965-4a47180015c7" solutionId="73e3026a-4fe7-489d-9965-4a47180015c7" resetWebServer="false" sharePointProductVersion="15.0" name="TeamViewer" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="e7808802-4ec0-48e2-9769-7d4d4ff2cb9d" />
+    <featureReference itemId="0e60427c-d60b-4fd7-b68c-45584b70bd21" />
+  </features>
+</package>

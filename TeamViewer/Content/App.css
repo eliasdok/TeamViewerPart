@@ -1,0 +1,35 @@
+﻿/* Place custom styles below */
+
+/* Small display Styles */
+#userContent {
+    overflow:auto;
+    height: 583px;
+    cursor: pointer;
+}
+
+.userPictureSmall {
+    height: 80px;
+    width: 80px;
+    padding: 2px;
+    float:left;
+}
+
+.userDetailsSmall {
+    font-weight:bold;
+    height: 80px;
+}
+
+#uniqueUserContent {
+    height: 600px;
+
+}
+
+#userPictureLarge {
+    width: 425px;
+    margin: 5px;
+    height: 200px;
+}
+
+#userDetailsLarge {
+
+}
