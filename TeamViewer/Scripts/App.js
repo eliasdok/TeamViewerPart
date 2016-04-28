@@ -24,125 +24,37 @@ $(document).ready(function () {
     // set window department name
     $('#teamProperty').text(departmentProperty);
     // Get initial data from search and set window
-    getUserData();
-    populateDepartment();
-    $("#uniqueUserContent").click(function (e) {
-        $("#userContent").show(1);
-        $("#uniqueUserContent").hide("slow");
-        e.preventDefault;
-    })
-    // Fetch single user data from Profile service and set into unique content when clicked
-    $("#userContent").click(function (e) {
-        //$(e.target).parent('div[class="personContainerSmall"]')
-        var parentDiv = e.target.closest('div[class="personContainerSmall"]');
-        var userProfileGUID = parentDiv.id;
-        window.uniquePerson = profilesSearchArray[userProfileGUID];
-        // Cross Domain request required from app to host URL as Profiles is not available
-        // Add logic so that if user has already been loaded into the cache a REST call does not need to be made
-        $.getScript(scriptbase + "SP.RequestExecutor.js", function () {
-            getSingleUserData();
-        });
-        $("#uniqueUserContent").show('slow');
-        $("#userContent").hide(1);
-        e.preventDefault;
-    })
+    var options = {
+        queryProperty: "Department",
+        queryValue: departmentProperty
+    }
+    restPeopleSearchQuery(options);
+    //populateDepartment();
+    //$("#uniqueUserContent").click(function (e) {
+    //    $("#userContent").show(1);
+    //    $("#uniqueUserContent").hide("slow");
+    //    e.preventDefault;
+    //})
+    //// Fetch single user data from Profile service and set into unique content when clicked
+    //$("#userContent").click(function (e) {
+    //    //$(e.target).parent('div[class="personContainerSmall"]')
+    //    var parentDiv = e.target.closest('div[class="personContainerSmall"]');
+    //    var userProfileGUID = parentDiv.id;
+    //    window.uniquePerson = profilesSearchArray[userProfileGUID];
+    //    // Cross Domain request required from app to host URL as Profiles is not available
+    //    // Add logic so that if user has already been loaded into the cache a REST call does not need to be made
+    //    $.getScript(scriptbase + "SP.RequestExecutor.js", function () {
+    //        getSingleUserData();
+    //    });
+    //    $("#uniqueUserContent").show('slow');
+    //    $("#userContent").hide(1);
+    //    e.preventDefault;
+    //})
 });
 
 function populateDepartment() {
-    for (var k in profilesSearchArray) {
-        var departmentList = {};
-        if (!(departmentList.indexOf contains k.Department)) {
-            departmentList.add(k.Department)
+ // Find all available departments and populate the selection list
 }
-    }
-}
-
-function getSingleUserData() {
-    var executor = new SP.RequestExecutor(appWebUrl)
-    // Build REST Query Url
-    var profileGetUrl = "/_api/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='" + uniquePerson.AccountName + "'"
-    var fullUrl = appWebUrl + profileGetUrl;
-    // REST Call
-    executor.executeAsync(
-        {
-            url: fullUrl,
-            type: "GET",
-            headers: {
-                "accept": "application/json; odata=verbose",
-                "content-type": "application/json; odata=verbose"
-            },
-            success: onGetSingleUserDataSucceeded,
-            error: onGetSingleUserDataFailed
-        }
-    );
-}
-
-function onGetSingleUserDataSucceeded(data) {
-    var jsonObject = JSON.parse(data.body);
-    var user = jsonObject.d
-    var person = profilesSearchArray[uniquePerson.UserProfile_GUID];
-    /*
-    // go get underscore.js to use this syntax
-    _.map(user.UserProfileProperties.results, function (r) {
-        person[r.Key] = r.Value;
-    });
-    */
-    for (var i = 0; i < user.UserProfileProperties.results.length; i++) {
-        var newPropertyName = user.UserProfileProperties.results[i].Key
-        person[newPropertyName] = user.UserProfileProperties.results[i].Value;
-    }
-    // Switch out url for MThumb(medium thumbnail) for LThumb(Large thumbnail) or insert placeholder if NULL
-    if (!person.PictureURL) {
-        var pictureUrl = "/_layouts/15/images/PersonPlaceholder.200x150x32.png"
-    } else {
-        var pictureUrl = (person.PictureURL.substring(0, (person.PictureURL.length) - 10)) + "LThumb.jpg"
-    }
-    $("#userPictureLarge").html("<img height='200px' src='" + pictureUrl + "'></img>");
-    $("#userNameLarge").html("<p>" + person.PreferredName + "</p>");
-    $("#userTitleLarge").html("<p>" + person.JobTitle + "</p>");
-    $("#userDepartmentLarge").html("<p>" + person.Department + "</p>");
-    $("#userTelephoneLarge").html("<p>" + person.WorkPhone + "</p>");
-}
-
-function onGetSingleUserDataFailed(data) {
-
-}
-
-// Use people search to get all users with same department as web part property
-function getUserData() {
-    var searchUrl = "/_api/search/query?querytext='Department:" + departmentProperty + "'&sourceid='b09a7990-05ea-4af9-81ef-edfab16c4e31'";
-    var fullUrl = appWebUrl + searchUrl;
-    console.log(fullUrl);
-    // REST Call to retrieve user data based on web part properties
-    jQuery.ajax(
-        {
-            url: fullUrl,
-            type: "GET",
-            headers: {
-                "accept": "application/json; odata=verbose",
-                "content-type": "application/json; odata=verbose"
-            },
-            success: onGetUserDataSucceeded,
-            error: onGetUserDataFailed
-        }
-    );
-}
-
-function onGetUserDataSucceeded(data) {
-    $('#appContent').empty();
-    var data = data.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results;
-    parseUserData(data)
-    drawUserData()
-}
-
-function onGetUserDataFailed() {
-    $('#appContent').text('Failed to Load User Data')
-}
-
-//function getUniqueContent(userProfileGUID) {
-//    var result = $.grep(profilesSearchArray, function (e) { return e.userProfileGUID === userProfileGUID; });
-//    return result[0];
-//}
 
 function parseUserData(data) {
     for (var i = 0; i < data.length; i++) {

@@ -17,6 +17,7 @@
     <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
 
     <!-- Add your JavaScript to the following file -->
+    <script type="text/javascript" src="../Scripts/RestHelper.js"></script>
     <script type="text/javascript" src="../Scripts/App.js"></script>
 </asp:Content>
 

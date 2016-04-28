@@ -9,6 +9,6 @@
     <ProjectItemFile Source="jquery-1.9.1.intellisense.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="AppPart.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="RestHelper.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="AppHelper.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="bluebird.min.js" Target="Scripts\" Type="ElementFile" />
   </Files>
 </ProjectItem>
