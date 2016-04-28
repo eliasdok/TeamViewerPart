@@ -9,5 +9,6 @@
     <File Path="Scripts\AppPart.js" Url="Scripts/AppPart.js" ReplaceContent="TRUE" />
     <File Path="Scripts\RestHelper.js" Url="Scripts/RestHelper.js" ReplaceContent="TRUE" />
     <File Path="Scripts\bluebird.min.js" Url="Scripts/bluebird.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\AppMix.js" Url="Scripts/AppMix.js" ReplaceContent="TRUE" />
   </Module>
 </Elements>

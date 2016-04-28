@@ -17,6 +17,8 @@
     <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
 
     <!-- Add your JavaScript to the following file -->
+    <script type="text/javascript" src="../Scripts/bluebird.min.js"></script>
+    <script type="text/javascript" src="../Scripts/AppMix.js"></script>
     <script type="text/javascript" src="../Scripts/RestHelper.js"></script>
     <script type="text/javascript" src="../Scripts/App.js"></script>
 </asp:Content>
@@ -35,6 +37,8 @@
     <select>
         <option value="Customer Services">Customer Services</option>
     </select>
+
+    <div id="teamProperty"></div>
 
     <div id="appContent">
         <p>Loading...</p>

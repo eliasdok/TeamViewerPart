@@ -45,6 +45,7 @@
       <DependentUpon>Feature2.feature</DependentUpon>
     </Content>
     <Content Include="Pages\TeamViewerAppPart.aspx" />
+    <Content Include="Scripts\AppMix.js" />
     <Content Include="Scripts\AppPart.js" />
     <Content Include="Scripts\bluebird.min.js" />
     <Content Include="Scripts\RestHelper.js" />

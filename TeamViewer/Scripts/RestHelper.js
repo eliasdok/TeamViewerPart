@@ -1,7 +1,7 @@
 ﻿// Provides Basic reusable functionality for using REST Queries
 
 // Create a cache object to store the results of the query
-var restObjectCache = {}
+window.restObjectCache = {}
 // Cache = {[SearchType] : {[uniqueid] : [DataObject]}
 
 // Use the Search function to query the people service and store in the cache object
@@ -27,7 +27,7 @@ function restPeopleSearchQuery(options) {
         );
 }
 
-function onRestPeopleSearchSucceed(data) {
+function onRestPeopleSearchSucceeded(data) {
     // fill cache object with people objects
     var data = data.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results
     for (var i = 0; i < data.length; i++) {
@@ -35,17 +35,20 @@ function onRestPeopleSearchSucceed(data) {
         // Create an object for each person and store it in the global store
         var person = {};
         // Loop through all returned data and create key value pair object for each
-        for (p in results) {
+        // TODO, check if array or object, map will not work for objects of objects
+        results.map(function (p) {
             var newPropertyName = p.Key
+            // ChangeCase js Package to change the capitalisation on the first letter (the Key in this data is capitalised) 
             person[newPropertyName] = p.Value
-        }
-        // Create SearchPeopleCache and Store Object
-        if (!(restObjectCache.hasOwnProperty(SearchPeopleResults))) {
-            restObjectCache[searchPeopleResults] = {};
+        });
+        // Create SearchPeopleCache object in the restObjectCache if it doesnt already exist and store the person Object
+        if (!(restObjectCache.hasOwnProperty('searchPeopleResults'))) {
+            restObjectCache['searchPeopleResults'] = {};
         }
         if (!(restObjectCache.searchPeopleResults[person.UserProfile_GUID])) {
             restObjectCache.searchPeopleResults[person.UserProfile_GUID] = person;
         }
+    }
 }
 
 function onRestPeopleSearchFailed(err) {
@@ -53,12 +56,20 @@ function onRestPeopleSearchFailed(err) {
     console.log(err);
 }
 
-function getSingleUserData() {
+// Use the Search function to query the people service and store in the cache object
+//Options = { 
+//    AccountName: [User Account Name]
+//    }
+function restUserProfileAccountQuery(options) {
+    // The browser will treat this request as cross domain so the appWebUrl must first be passed to the RequestExecutor
+    // ensure to call this function as below
+    // $.getScript(scriptbase + "SP.RequestExecutor.js", function () {
+    //        getSingleUserData();
+    //    });
     var executor = new SP.RequestExecutor(appWebUrl)
     // Build REST Query Url
-    var profileGetUrl = "/_api/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='" + uniquePerson.AccountName + "'"
+    var profileGetUrl = "/_api/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='" + options.accountName + "'"
     var fullUrl = appWebUrl + profileGetUrl;
-    // REST Call
     executor.executeAsync(
         {
             url: fullUrl,
@@ -75,42 +86,46 @@ function getSingleUserData() {
 
 function onGetSingleUserDataSucceeded(data) {
     var jsonObject = JSON.parse(data.body);
-    var user = jsonObject.d
-    var person = profilesSearchArray[uniquePerson.UserProfile_GUID];
+    var user = jsonObject.d;
+    // get the existing person from the restObjectCache or create a new person
+    if (restObjectCache.searchPeopleResults[uniquePerson.UserProfile_GUID]) {
+        var person = restObjectCache.searchPeopleResults[uniquePerson.UserProfile_GUID];
+    } else {
+        var person = {};
+    }
     /*
     // go get underscore.js to use this syntax
     _.map(user.UserProfileProperties.results, function (r) {
         person[r.Key] = r.Value;
     });
     */
-    for (var i = 0; i < user.UserProfileProperties.results.length; i++) {
-        var newPropertyName = user.UserProfileProperties.results[i].Key
-        person[newPropertyName] = user.UserProfileProperties.results[i].Value;
+    var results = user.UserProfileProperties.results
+    // Loop trough all properties and assign to the person object
+    results.map(function (p) {
+        var newPropertyName = p.Key
+        person[newPropertyName] = p.Value;
+    });
+    // store person back into restObjectCache
+    // TODO create add to restObjectCache option so the below does not need to be repeated
+    if (!(restObjectCache.hasOwnProperty('searchPeopleResults'))) {
+        restObjectCache['searchPeopleResults'] = {};
     }
-    // Switch out url for MThumb(medium thumbnail) for LThumb(Large thumbnail) or insert placeholder if NULL
-    if (!person.PictureURL) {
-        var pictureUrl = "/_layouts/15/images/PersonPlaceholder.200x150x32.png"
-    } else {
-        var pictureUrl = (person.PictureURL.substring(0, (person.PictureURL.length) - 10)) + "LThumb.jpg"
+    if (!(restObjectCache.searchPeopleResults[person.UserProfile_GUID])) {
+        restObjectCache.searchPeopleResults[person.UserProfile_GUID] = person;
     }
-    $("#userPictureLarge").html("<img height='200px' src='" + pictureUrl + "'></img>");
-    $("#userNameLarge").html("<p>" + person.PreferredName + "</p>");
-    $("#userTitleLarge").html("<p>" + person.JobTitle + "</p>");
-    $("#userDepartmentLarge").html("<p>" + person.Department + "</p>");
-    $("#userTelephoneLarge").html("<p>" + person.WorkPhone + "</p>");
 }
 
-function onGetSingleUserDataFailed(data) {
-
+function onGetSingleUserDataFailed(err) {
+    console.log(err);
 }
 
-// Allows pulling variables from query string paramters
-    function getQueryStringParameter(urlParameterKey) {
-        var params = document.URL.split('?')[1].split('&');
-        var strParams = '';
-        for (var i = 0; i < params.length; i = i + 1) {
-            var singleParam = params[i].split('=');
-            if (singleParam[0] == urlParameterKey)
-                return decodeURIComponent(singleParam[1]);
-        }
+    // Allows pulling variables from query string paramters
+function getQueryStringParameter(urlParameterKey) {
+    var params = document.URL.split('?')[1].split('&');
+    var strParams = '';
+    for (var i = 0; i < params.length; i = i + 1) {
+        var singleParam = params[i].split('=');
+        if (singleParam[0] == urlParameterKey)
+            return decodeURIComponent(singleParam[1]);
     }
+}

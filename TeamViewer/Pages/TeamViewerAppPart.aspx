@@ -13,7 +13,15 @@
     <script type="text/javascript" src="/_layouts/15/MicrosoftAjax.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.js"></script>
+
+
+    <!-- Add custom Javascript Here -->
+    <script type="text/javascript" src="../Scripts/bluebird.min.js"></script>
+    <script type="text/javascript" src="../Scripts/AppMix.js"></script>
+    <script type="text/javascript" src="../Scripts/RestHelper.js"></script>
     <script type="text/javascript" src="../Scripts/AppPart.js"></script>
+
+    <!-- Custom StyleShee -->
     <link rel="stylesheet" href="../Content/App.css" />
     <script type="text/javascript">
 
