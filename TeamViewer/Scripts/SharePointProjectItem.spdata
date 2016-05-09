@@ -2,14 +2,17 @@
 <ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="Scripts\" Type="ElementManifest" />
-    <ProjectItemFile Source="App.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="app.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="jquery-1.9.1.min.map" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="jquery-1.9.1.min.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="jquery-1.9.1.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="jquery-1.9.1.intellisense.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="AppPart.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="RestHelper.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="apppart.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="resthelper.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="bluebird.min.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="AppMix.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="appmix.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="require.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="requireconfig.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="underscore-min.js" Target="Scripts\" Type="ElementFile" />
   </Files>
 </ProjectItem>

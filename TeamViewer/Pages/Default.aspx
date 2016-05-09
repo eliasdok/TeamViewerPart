@@ -18,9 +18,10 @@
 
     <!-- Add your JavaScript to the following file -->
     <script type="text/javascript" src="../Scripts/bluebird.min.js"></script>
-    <script type="text/javascript" src="../Scripts/AppMix.js"></script>
-    <script type="text/javascript" src="../Scripts/RestHelper.js"></script>
-    <script type="text/javascript" src="../Scripts/App.js"></script>
+    <script type="text/javascript" src="../Scripts/underscore-min.js"></script>   
+    <script type="text/javascript" src="../Scripts/resthelper.js"></script>
+    <script type="text/javascript" src="../Scripts/appmix.js"></script>
+    <script type="text/javascript" src="../Scripts/app.js"></script>
 </asp:Content>
 
 <%-- The markup in the following Content element will be placed in the TitleArea of the page --%>
@@ -41,7 +42,7 @@
     <div id="teamProperty"></div>
 
     <div id="appContent">
-        <p>Loading...</p>
+        <div id="userContent"><p>Loading...</p></div>
     </div>
 
 </asp:Content>

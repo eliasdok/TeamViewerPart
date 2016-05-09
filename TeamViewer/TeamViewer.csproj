@@ -45,10 +45,12 @@
       <DependentUpon>Feature2.feature</DependentUpon>
     </Content>
     <Content Include="Pages\TeamViewerAppPart.aspx" />
-    <Content Include="Scripts\AppMix.js" />
-    <Content Include="Scripts\AppPart.js" />
+    <Content Include="Scripts\appmix.js" />
+    <Content Include="Scripts\apppart.js" />
     <Content Include="Scripts\bluebird.min.js" />
-    <Content Include="Scripts\RestHelper.js" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\requireconfig.js" />
+    <Content Include="Scripts\resthelper.js" />
     <Content Include="Scripts\TeamViewerAppPart\Elements.xml">
       <SubType>Designer</SubType>
       <OpcRelationship>feature-elementmanifest</OpcRelationship>
@@ -72,10 +74,11 @@
       <SharePointProjectItemId>{59822c7d-50f0-4474-9bc0-023d84faf210}</SharePointProjectItemId>
     </None>
     <Content Include="Scripts\Elements.xml" />
-    <Content Include="Scripts\App.js" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\underscore-min.js" />
     <Content Include="Scripts\_references.js" />
   </ItemGroup>
   <ItemGroup>

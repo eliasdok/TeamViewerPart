@@ -10,5 +10,8 @@
     <File Path="Scripts\RestHelper.js" Url="Scripts/RestHelper.js" ReplaceContent="TRUE" />
     <File Path="Scripts\bluebird.min.js" Url="Scripts/bluebird.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\AppMix.js" Url="Scripts/AppMix.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\require.js" Url="Scripts/require.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\RequireConfig.js" Url="Scripts/RequireConfig.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\underscore-min.js" Url="Scripts/underscore-min.js" ReplaceContent="TRUE" />
   </Module>
 </Elements>

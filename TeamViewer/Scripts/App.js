@@ -1,24 +1,10 @@
 ﻿'use strict';
 
-/*
-var Template.temp1 = `<div>
-{{accountName}}
-{{#each z}}
-    {{a}}
-{{/each}}
-</div>`;
-
-var html = handlebars.render(Template.temp1,{ accountName: 'x',z : [ { a: 1 }, { a:2 } ] });
-*/
-/*
-function App() {
-    var departmentProperty = null;
-    */
 $(document).ready(function () {
     // Prepare Global Window variables
     window.departmentProperty = "ICT Infrastructure - Sharepoint" // decodeURIComponent(getQueryStringParameter("Department"));
-    window.hostUrl = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
-    window.appWebUrl = getQueryStringParameter("SPAppWebUrl");
+    window.hostUrl = decodeURIComponent(restHelper.getQueryStringParameter("SPHostUrl"));
+    window.appWebUrl = restHelper.getQueryStringParameter("SPAppWebUrl");
     window.scriptbase = hostUrl + "/_layouts/15/";
     window.profilesSearchArray = {};
     // set window department name
@@ -28,7 +14,11 @@ $(document).ready(function () {
         queryProperty: "Department",
         queryValue: departmentProperty
     }
-    restPeopleSearchQuery(options);
+
+    // Create new Promise for Async Call
+
+    restHelper.peopleSearchQuery(options);
+    
     //populateDepartment();
     //$("#uniqueUserContent").click(function (e) {
     //    $("#userContent").show(1);
