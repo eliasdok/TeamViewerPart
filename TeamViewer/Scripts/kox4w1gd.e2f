@@ -25,7 +25,7 @@
     // Create event that fetches single user data from Profile service and set into unique content when clicked
     $("#userContent").click(function (e) {
         //$(e.target).parent('div[class="personContainerSmall"]')
-        var userProfileGUID = $(e.target).closest('div[class="personContainerSmall"]').id;
+        var userProfileGUID = e.target.closest('div[class="personContainerSmall"]').id;
         var uniquePerson = restHelper.objectCache.searchPeopleResults[userProfileGUID];
         // Cross Domain request required from app to host URL as Profiles is not available
         // Add logic so that if user has already been loaded into the cache a REST call does not need to be made
@@ -36,7 +36,7 @@
         var promise = Promise.resolve($.getScript(scriptbase + "SP.RequestExecutor.js", function () {
             return restHelper.userProfileAccountQuery(userProfileSearchOptions)
         }));
-        promise.then(drawSingleUserData(uniquePerson));
+        promise.then(drawSingleUserData(uniquePerson);
         $("#uniqueUserContent").show('slow');
         $("#userContent").hide(1);
         e.preventDefault;

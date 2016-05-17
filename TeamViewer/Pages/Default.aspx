@@ -44,5 +44,17 @@
     <div id="appContent">
         <div id="userContent"><p>Loading...</p></div>
     </div>
+        <div id="uniqueUserContent">
+        <div id="userPictureLarge"></div>
+        <div id="userDetailsLarge"></div>
+        <h1>User Name</h1>
+        <div id="userNameLarge"></div>
+        <h2>Title</h2>
+        <div id="userTitleLarge"></div>
+        <h3>Department</h3>
+        <div id="userDepartmentLarge"></div>
+        <h4>Telephone</h4>
+        <div id="userTelephoneLarge"></div>
+    </div>
 
 </asp:Content>
