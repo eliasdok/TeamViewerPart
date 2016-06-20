@@ -24,8 +24,8 @@
     })
     // Create event that fetches single user data from Profile service and set into unique content when clicked
     $("#userContent").click(function (e) {
-        //$(e.target).parent('div[class="personContainerSmall"]')
-        var userProfileGUID = $(e.target).closest('div[class="personContainerSmall"]').id;
+        //Finds the closest paretn DOM element that matches the query, returns an array [0] required
+        var userProfileGUID = $(e.target).closest('div[class="personContainerSmall"]')[0].id;
         var uniquePerson = restHelper.objectCache.searchPeopleResults[userProfileGUID];
         // Cross Domain request required from app to host URL as Profiles is not available
         // Add logic so that if user has already been loaded into the cache a REST call does not need to be made
